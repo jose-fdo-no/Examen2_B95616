@@ -12,11 +12,14 @@ namespace SolucionExamen.Controllers
 
         public CoffeeDispenserController()
         {
-            // Inicializa la lista de cafés en el constructor
             coffeeList = GetCoffeeList();
             totalOrderCost = 0;
         }
 
+        /// <summary>
+        /// Crea la lista de cafés con los valores dados en el enunciado
+        /// </summary>
+        /// <returns>La lista de cafés creada</returns>
         private List<CoffeeModel> GetCoffeeList()
         {
             List<CoffeeModel> coffeeList = new List<CoffeeModel>
@@ -29,6 +32,11 @@ namespace SolucionExamen.Controllers
             return coffeeList;
         }
 
+        /// <summary>
+        /// Crea la lista del dinero disponible para vuelto
+        /// con los valores dados en el enunciado
+        /// </summary>
+        /// <returns>La lista del dinero para vueltos</returns>
         private List<MoneyModel> GetMoneyList()
         {
             List<MoneyModel> moneyList = new List<MoneyModel>
@@ -41,6 +49,10 @@ namespace SolucionExamen.Controllers
             return moneyList;
         }
 
+        /// <summary>
+        /// Vista de la página del sistema web
+        /// </summary>
+        /// <returns>Regresa a la misma vista</returns>
         public IActionResult Index()
         {
             ViewBag.MainTitle = "Lista de cafés disponibles";
@@ -48,6 +60,11 @@ namespace SolucionExamen.Controllers
             return View(coffeeList);
         }
 
+        /// <summary>
+        /// Acción de realizar una orden en el sistema web
+        /// </summary>
+        /// <param name="coffeeOrder">Diccionario hecho al momento de realizar la orden</param>
+        /// <returns>Redirige a la página del inicio nuevamente</returns>
         [HttpPost]
         public IActionResult MakeShopOrder(Dictionary<string, string> coffeeOrder)
         {
