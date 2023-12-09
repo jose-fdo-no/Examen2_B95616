@@ -44,11 +44,12 @@ namespace SolucionExamen.Controllers
         public IActionResult Index()
         {
             ViewBag.MainTitle = "Lista de cafés disponibles";
+            ViewBag.TotalOrderCost = 0;
             return View(coffeeList);
         }
 
         [HttpPost]
-        public IActionResult Ordenar(Dictionary<string, string> coffeeOrder)
+        public IActionResult MakeShopOrder(Dictionary<string, string> coffeeOrder)
         {
             foreach (var entry in coffeeOrder)
             {
@@ -72,6 +73,7 @@ namespace SolucionExamen.Controllers
                     }
                 }
             }
+            ViewBag.TotalOrderCost = totalOrderCost;
             return RedirectToAction("Index", coffeeList);
         }
     }

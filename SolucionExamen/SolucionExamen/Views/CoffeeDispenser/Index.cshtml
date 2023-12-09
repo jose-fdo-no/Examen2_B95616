@@ -7,7 +7,7 @@
 <h1>@ViewBag.MainTitle</h1>
 
 <div>
-    @using (Html.BeginForm("Ordenar", "CoffeeDispenser", FormMethod.Post))
+    @using (Html.BeginForm("MakeShopOrder", "CoffeeDispenser", FormMethod.Post))
     {
         <table class="table">
             <thead>
@@ -30,12 +30,14 @@
                             <input type="checkbox" name="selectedCoffees" value="@item.Id" />Seleccionar
                         </td>
                         <td>
-                            <input type="number" name="coffeeQuantities[@item.Id]" min="1"/>
+                            <input type="number" name="coffeeQuantities[@item.Id]" min="1" max=@item.CoffeeQuantity/>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
         <input type="submit" value="Realizar Orden" />
+
+        <p>Precio Total de la Orden: ₡@ViewBag.TotalOrderCost</p>
     }
 </div>
