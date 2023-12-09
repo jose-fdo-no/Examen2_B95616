@@ -1,4 +1,4 @@
-﻿@model List<SolucionExamen.Models.CoffeeModel>;
+﻿@model List<SolucionExamen.Models.CoffeeModel>
 
 @{
     ViewData["Title"] = "Dispensador de café";
@@ -7,27 +7,35 @@
 <h1>@ViewBag.MainTitle</h1>
 
 <div>
-    <table class="table">
-
-        <thead>
-            <tr>
-                <th>Cantidad disponible</th>
-                <th>Tipo de café</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    @using (Html.BeginForm("Ordenar", "CoffeeDispenser", FormMethod.Post))
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.CoffeeQuantity</td>
-                    <td>@item.CoffeeType</td>
-                    <td>@item.CoffeePrice</td>
+                    <th>Cantidad disponible</th>
+                    <th>Tipo de café</th>
+                    <th>Precio</th>
+                    <th>Ordenar</th>
+                    <th>Cantidad por orden</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<div>
-    <button>Ordenar café</button>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CoffeeQuantity</td>
+                        <td>@item.CoffeeType</td>
+                        <td>@item.CoffeePrice</td>
+                        <td>
+                            <input type="checkbox" name="selectedCoffees" value="@item.Id" />Seleccionar
+                        </td>
+                        <td>
+                            <input type="number" name="coffeeQuantities[@item.Id]" min="1"/>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <input type="submit" value="Realizar Orden" />
+    }
 </div>
