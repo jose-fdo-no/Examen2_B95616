@@ -1,0 +1,33 @@
+﻿@model List<SolucionExamen.Models.CoffeeModel>;
+
+@{
+    ViewData["Title"] = "Dispensador de café";
+}
+
+<h1>@ViewBag.MainTitle</h1>
+
+<div>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Cantidad disponible</th>
+                <th>Tipo de café</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CoffeeQuantity</td>
+                    <td>@item.CoffeeType</td>
+                    <td>@item.CoffeePrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <button>Ordenar café</button>
+</div>
